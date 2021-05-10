@@ -1,0 +1,29 @@
+package br.com.stoom.CRUD.enums;
+
+import org.json.JSONObject;
+
+public enum ClientMessagens {
+	
+	CREATED("Iten Created With Success"),
+	DELETED("Iten Deleted With Success"),
+	UPDATED("Iten Updated With Success");
+
+	private String msg;
+
+	ClientMessagens(String msg) {
+		this.msg = msg;
+	}
+	
+	public String ErrorClient(String msg) {
+		return new JSONObject()
+                .put("rejected", msg)
+                .toString();
+	}
+	
+	public String SuccessClient(String msg) {
+		return new JSONObject()
+                .put("resolve", this.msg)
+                .toString();
+	}
+
+}

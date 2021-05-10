@@ -1,0 +1,5 @@
+package br.com.stoom.CRUD.testConfig;
+
+public class H2TestProfileJPAConfig {
+
+}

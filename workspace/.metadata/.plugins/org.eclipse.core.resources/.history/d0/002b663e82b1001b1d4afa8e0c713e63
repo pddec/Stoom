@@ -1,0 +1,69 @@
+package br.com.stoom.CRUD.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.stoom.CRUD.dto.AddressDTO;
+import br.com.stoom.CRUD.dto.AddressDTO.BuilderAddressDTO;
+import br.com.stoom.CRUD.enums.ErrorCodes;
+import br.com.stoom.CRUD.exceptions.SystemRuntimeException;
+import br.com.stoom.CRUD.models.Address;
+import br.com.stoom.CRUD.repositories.AddressRepository;
+import br.com.stoom.CRUD.services.interfaces.CallServices;
+import br.com.stoom.CRUD.services.interfaces.Services;
+
+@Service
+public class AddressService implements Services<AddressDTO,Address> {
+	
+	@Autowired
+	AddressRepository addressRepository;
+	
+	@Autowired
+	CallServices<AddressDTO> googleMapCallService;
+
+	@Override
+	public Address executeCreate(AddressDTO dto) {
+		
+		if(dto.getLatitude() == null && dto.getLongitude() == null) {
+			
+			final AddressDTO constAddressDTO = dto;
+			
+			dto = googleMapCallService.execute(constAddressDTO, response ->
+					BuilderAddressDTO.create()
+						.setId(constAddressDTO.getId())
+						.setCity(constAddressDTO.getCity())
+						.setComplement(constAddressDTO.getComplement())
+						.setCountry(constAddressDTO.getCountry())
+						.setNeighbourhood(constAddressDTO.getNeighbourhood())
+						.setNumber(constAddressDTO.getNumber())
+						.setStreetName(constAddressDTO.getStreetName())
+						.setState(constAddressDTO.getState())
+						.setZipcode(constAddressDTO.getZipcode())
+						.setLatitude(response.get("latitude"))
+						.setLongitude(response.get("longitude"))
+						.build());
+		}
+		
+		final Address addressModel = new Address(dto);
+		
+		try {
+			return addressRepository.save(addressModel);
+		}catch(Exception e) {
+			throw new SystemRuntimeException(ErrorCodes.DBE0001);
+		}
+		
+	}
+
+	@Override
+	public Address executeUpdate(AddressDTO dto) {
+		
+		final Address addressModel = new Address(dto);
+		
+		try {
+			return addressRepository.save(addressModel);
+		}catch(Exception e) {
+			throw new SystemRuntimeException(ErrorCodes.DBE0001);
+		}
+	}
+
+}

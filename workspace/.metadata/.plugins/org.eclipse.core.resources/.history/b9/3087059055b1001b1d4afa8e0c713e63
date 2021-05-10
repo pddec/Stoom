@@ -1,0 +1,28 @@
+package br.com.stoom.CRUD.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.com.stoom.CRUD.dto.AddressDTO;
+import br.com.stoom.CRUD.models.Address;
+import br.com.stoom.CRUD.services.interfaces.Services;
+
+public class AddressService implements Services<AddressDTO> {
+	
+	@Autowired
+	AddressRepository addressRepository;
+
+	@Override
+	public void executeGet(AddressDTO dto) {
+		
+		Address addressModel;
+		
+		if(dto.getLatitude() == null && dto.getLongitude() == null) {
+			
+		}
+		
+		addressModel = new Address(dto);
+		addressRepository.save(addressModel);
+		
+	}
+
+}

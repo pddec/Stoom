@@ -1,0 +1,15 @@
+package br.com.stoom.CRUD.exceptions;
+
+import br.com.stoom.CRUD.enums.ErrorCodes;
+
+public class SystemRuntimeException extends RuntimeException {
+
+	private static final long serialVersionUID = 1L;
+	
+	private static final String defaultMsg = "System-generated error code: ";  
+	
+	public SystemRuntimeException(ErrorCodes codes) {
+		super(defaultMsg + codes.name());
+	}
+
+}

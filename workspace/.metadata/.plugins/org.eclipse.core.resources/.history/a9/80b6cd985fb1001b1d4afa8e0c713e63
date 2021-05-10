@@ -1,0 +1,115 @@
+package br.com.stoom.CRUD.models;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import br.com.stoom.CRUD.dto.AddressDTO;
+
+@Entity
+public class Address {	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String streetName;
+    private Integer number;
+    private Integer complement;
+    private String neighbourhood;
+    private String city;
+    private String state;
+    private String country;
+    private Long zipcode;
+    private	Long latitude;
+    private Long longitude;
+    
+    
+    public Address() {}
+
+	public Address(AddressDTO addressDTO) {
+		this.id = addressDTO.getId();
+		this.streetName = addressDTO.getStreetName();
+		this.number = addressDTO.getNumber();
+		this.complement = addressDTO.getComplement();
+		this.neighbourhood = addressDTO.getNeighbourhood();		
+		this.city = addressDTO.getCity();
+		this.state = addressDTO.getState();
+		this.country = addressDTO.getCountry();
+		this.zipcode = addressDTO.getZipcode();
+		this.latitude = addressDTO.getLatitude();
+		this.longitude = addressDTO.getNeighbourhood();
+	}
+    
+    
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getStreetName() {
+		return streetName;
+	}
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
+	}
+	public Integer getNumber() {
+		return number;
+	}
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+	public Integer getComplement() {
+		return complement;
+	}
+	public void setComplement(Integer complement) {
+		this.complement = complement;
+	}
+	public String getNeighbourhood() {
+		return neighbourhood;
+	}
+	public void setNeighbourhood(String neighbourhood) {
+		this.neighbourhood = neighbourhood;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public Long getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(Long zipcode) {
+		this.zipcode = zipcode;
+	}
+	public Long getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(Long latitude) {
+		this.latitude = latitude;
+	}
+	public Long getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(Long longitude) {
+		this.longitude = longitude;
+	}
+
+
+    
+    
+}

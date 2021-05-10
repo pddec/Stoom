@@ -1,0 +1,48 @@
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.Repository;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.stoom.CRUD.dto.AddressDTO;
+import br.com.stoom.CRUD.dto.AddressDTO.BuilderAddressDTO;
+import br.com.stoom.CRUD.enums.ClientMessagens;
+import br.com.stoom.CRUD.services.interfaces.Services;
+
+@RestController
+@RequestMapping(value = "/address")
+public class AddressController {
+	
+	@Autowired
+	Services<AddressDTO> addressService;
+	
+	@RequestMapping(value = "/", consumes = "application/JSON", method = RequestMethod.POST)
+	public String createAddress(@RequestBody Map<String,?> request ) {
+		
+		final AddressDTO addressDTO = BuilderAddressDTO.create()
+				.setCity(String.valueOf(request.get("city")))
+				.setComplement(String.valueOf(request.get("complement")))
+				.setCountry(String.valueOf(request.get("country")))
+				.setNeighbourhood(String.valueOf(request.get("neighbourhood")))
+				.setNumber(String.valueOf(request.get("number")))
+				.setStreetName(String.valueOf(request.get("streetName")))
+				.setState(String.valueOf(request.get("getState")))
+				.setZipcode(String.valueOf(request.get("zipcode")))
+				.setLatitude(String.valueOf(request.get("latitude")))
+				.setLongitude(String.valueOf(request.get("longitude")))
+				.build();
+		try {
+			addressService.executeCreate(addressDTO);
+			return ClientMessagens.CREATED.SuccessClient("");
+		}catch (Exception e) {
+			return ClientMessagens.CREATED.SuccessClient(e.getMessage());
+		}
+		
+		
+		return "";
+	}
+
+}

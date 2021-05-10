@@ -1,0 +1,7 @@
+package br.com.stoom.CRUD.services.interfaces;
+
+public interface CallServices<T> {
+	
+	T execute (Function<T,Map<String,String>);
+
+}

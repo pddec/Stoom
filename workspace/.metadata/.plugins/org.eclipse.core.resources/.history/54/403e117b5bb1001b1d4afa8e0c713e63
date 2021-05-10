@@ -1,0 +1,15 @@
+package br.com.stoom.CRUD.services.interfaces;
+
+import java.util.Map;
+import java.util.function.Function;
+
+import org.springframework.stereotype.Service;
+
+import br.com.stoom.CRUD.dto.AddressDTO;
+
+@Service
+public interface CallServices<T> {
+	
+	T execute(Function<Map<String, String>,AddressDTO> function);
+
+}

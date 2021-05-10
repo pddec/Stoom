@@ -1,0 +1,13 @@
+package br.com.stoom.CRUD;
+
+import org.aspectj.lang.annotation.Before;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class CrudApplicationTests {
+	
+	
+	void contextLoads() {
+	}
+
+}

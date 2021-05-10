@@ -1,0 +1,117 @@
+package br.com.stoom.CRUD;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+
+import br.com.stoom.CRUD.dto.AddressDTO;
+import br.com.stoom.CRUD.dto.AddressDTO.BuilderAddressDTO;
+import br.com.stoom.CRUD.models.Address;
+import br.com.stoom.CRUD.services.interfaces.Services;
+
+
+@ActiveProfiles("test")
+@SpringBootTest()
+class CrudApplicationTests {
+	
+	
+	@Autowired
+	private Services<AddressDTO,Address> addressService;
+	
+	private AddressDTO addressDTO;
+
+	private Long id;
+	
+	@BeforeEach
+	public void createContext() {
+		this.addressDTO = BuilderAddressDTO.create()
+				.setCity("Campinas")
+				.setState("São Paulo")
+				.setComplement("12")
+				.setCountry("Brasil")
+				.setNeighbourhood("Fazenda Santa Candida")
+				.setNumber("1395")
+				.setStreetName("Rua Mirta Coluccini Porto")
+				.setZipcode("13087606")
+				.setLatitude("")
+				.setLongitude("")
+				.build();
+	}
+	
+	@Test
+	public void testCreate() {
+		
+		Address address = addressService.executeCreate(this.addressDTO);
+		
+		this.id = address.getId();
+	
+		assertEquals(addressDTO.getCity(), address.getCity());
+		assertEquals(addressDTO.getComplement(), address.getComplement());
+		assertEquals(addressDTO.getCountry(), address.getCountry());
+		assertEquals(addressDTO.getNeighbourhood(), address.getNeighbourhood());
+		assertEquals(addressDTO.getNumber(), address.getNumber());
+		assertEquals(addressDTO.getState(), address.getState());
+		assertEquals(addressDTO.getStreetName(), address.getStreetName());
+		assertEquals(-22.8401301 , address.getLatitude());
+		assertEquals(-47.0377241, address.getLongitude());
+		assertEquals(addressDTO.getZipcode(), address.getZipcode());
+		
+	}
+	
+	@Test
+	public void testUpdate() {
+		
+		AddressDTO updateAddressDTO = BuilderAddressDTO.create()
+				.setId(this.id)
+				.setCity("Campinas")
+				.setState("São Paulo")
+				.setComplement("616")
+				.setCountry("Brasil")
+				.setNeighbourhood("Centro")
+				.setNumber("1395")
+				.setStreetName("Rua Conceição")
+				.setZipcode("13010916")
+				.setLatitude("")
+				.setLongitude("")
+				.build();
+	
+		Address address = addressService.executeCreate(updateAddressDTO);
+		
+		assertEquals(updateAddressDTO.getCity(), address.getCity());
+		assertEquals(updateAddressDTO.getCountry(), address.getCountry());
+		assertEquals(updateAddressDTO.getState(), address.getState());
+		
+		assertEquals(updateAddressDTO.getCity(), this.addressDTO.getCity());
+		assertEquals(updateAddressDTO.getCountry(), this.addressDTO.getCountry());
+		assertEquals(updateAddressDTO.getState(), this.addressDTO.getState());
+		
+		assertEquals(this.addressDTO.getCity(), address.getCity());
+		assertEquals(this.addressDTO.getCountry(), address.getCountry());
+		assertEquals(this.addressDTO.getState(), address.getState());
+		
+		assertEquals(updateAddressDTO.getComplement(), address.getComplement());
+		assertNotEquals(this.addressDTO.getComplement(), address.getComplement());
+		
+		assertEquals(updateAddressDTO.getNeighbourhood(), address.getNeighbourhood());
+		assertNotEquals(this.addressDTO.getNeighbourhood(), address.getComplement());
+		
+		assertEquals(updateAddressDTO.getNumber(), address.getNumber());
+		assertNotEquals(this.addressDTO.getNumber(), address.getNumber());
+		
+		assertEquals(updateAddressDTO.getStreetName(), address.getStreetName());
+		assertNotEquals(this.addressDTO.getStreetName(), address.getStreetName());
+		
+		assertNotEquals(-22.8401301 , address.getLatitude());
+		assertNotEquals(-47.0377241, address.getLongitude());
+		
+		assertEquals(updateAddressDTO.getZipcode(), address.getZipcode());
+		assertNotEquals(this.addressDTO.getZipcode(), address.getZipcode());
+		
+	}
+
+}

@@ -1,0 +1,24 @@
+package br.com.stoom.CRUD.services;
+
+import java.util.Map;
+import java.util.function.Function;
+
+import br.com.stoom.CRUD.dto.AddressDTO;
+import br.com.stoom.CRUD.enums.ErrorCodes;
+import br.com.stoom.CRUD.services.interfaces.CallServices;
+
+public class GoogleMapsCallService implements CallServices<AddressDTO> {
+
+	@Override
+	public AddressDTO execute(Function<Map<String, String>,AddressDTO> function) {
+		
+		try {
+			
+			return function.apply(Map.of());
+		}catch(Exception e){
+			throw new RuntimeException("System-generated error code: " + ErrorCodes.EXS0001.name());
+		}
+		
+	}
+
+}

@@ -1,0 +1,115 @@
+package br.com.stoom.CRUD.dto;
+
+public class AddressDTO {
+	
+	private Long id;
+    private String streetName;
+    private Integer number;
+    private Integer complement;
+    private String neighbourhood;
+    private String city;
+    private String state;
+    private String country;
+    private Long zipcode;
+    private	String latitude;
+    private String longitude;
+    
+	private AddressDTO() {}
+    
+    public Long getId() {
+		return id;
+	}
+
+	public String getStreetName() {
+		return streetName;
+	}
+
+	public Integer getNumber() {
+		return number;
+	}
+
+	public Integer getComplement() {
+		return complement;
+	}
+
+	public String getNeighbourhood() {
+		return neighbourhood;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public Long getZipcode() {
+		return zipcode;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+
+    private static AddressDTO create() {
+    	return new AddressDTO();
+    }
+
+    
+    
+    
+public static class BuilderAddressDTO {
+		
+		private Long id;
+		private String nome;
+		private Integer telefone;
+		private String codigo;
+		
+		private BuilderAddressDTO() {}
+		
+		public BuilderAddressDTO setId(String id) {
+			this.id = Long.parseLong(id);
+			return this;
+		}
+		
+		public BuilderAddressDTO setNome(String nome) {
+			this.nome = nome;
+			return this;
+		}
+		
+		public BuilderAddressDTO setTelefone(String telefone) {
+			this.telefone = Integer.parseInt(telefone);
+			return this;
+		}
+		
+		public BuilderAddressDTO setCodigo(String codigo) {
+			this.codigo = codigo;
+			return this;
+		}
+		
+		public AddressDTO build() {
+
+			return AddressDTO.create()
+					.setId(this.id)
+					.setCodigo(this.codigo)
+					.setNome(this.nome)
+					.setTelefone(this.telefone);
+		}
+		
+		public static BuilderAddressDTO create() {
+			return new BuilderAddressDTO();
+		}
+		
+	}
+
+}

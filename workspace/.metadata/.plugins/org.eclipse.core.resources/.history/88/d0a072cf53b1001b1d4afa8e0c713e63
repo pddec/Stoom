@@ -1,0 +1,20 @@
+package br.com.stoom.CRUD.services;
+
+import br.com.stoom.CRUD.dto.AddressDTO;
+import br.com.stoom.CRUD.models.Address;
+import br.com.stoom.CRUD.services.interfaces.Services;
+
+public class AddressService implements Services<AddressDTO> {
+
+	@Override
+	public void executeGet(AddressDTO dto) {
+		
+		Address addressModel;
+		
+		if(dto.getLatitude() != null && dto.getLongitude() != null) {
+			addressModel = new Address(dto);
+		}
+		
+	}
+
+}

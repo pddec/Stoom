@@ -1,0 +1,57 @@
+package br.com.stoom.CRUD.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.stoom.CRUD.dto.AddressDTO;
+import br.com.stoom.CRUD.dto.AddressDTO.BuilderAddressDTO;
+import br.com.stoom.CRUD.enums.ErrorCodes;
+import br.com.stoom.CRUD.exceptions.SystemRuntimeException;
+import br.com.stoom.CRUD.models.Address;
+import br.com.stoom.CRUD.repositories.AddressRepository;
+import br.com.stoom.CRUD.services.interfaces.CallServices;
+import br.com.stoom.CRUD.services.interfaces.Services;
+
+@Service
+public class AddressService implements Services<AddressDTO> {
+	
+	@Autowired
+	AddressRepository addressRepository;
+	
+	@Autowired
+	CallServices<AddressDTO> googleMapCallService;
+
+	@Override
+	public void executeCreate(AddressDTO dto) {
+		
+		if(dto.getLatitude() == null && dto.getLongitude() == null) {
+			final AddressDTO freezeValuesfromAddressDTO = dto;
+			dto = googleMapCallService.execute(freezeValuesfromAddressDTO.toString(), response ->
+					BuilderAddressDTO.create()
+						.setId(freezeValuesfromAddressDTO.getId())
+						.setCity(freezeValuesfromAddressDTO.getCity())
+						.setComplement(freezeValuesfromAddressDTO.getComplement())
+						.setCountry(freezeValuesfromAddressDTO.getCountry())
+						.setNeighbourhood(freezeValuesfromAddressDTO.getNeighbourhood())
+						.setNumber(freezeValuesfromAddressDTO.getNumber())
+						.setStreetName(freezeValuesfromAddressDTO.getStreetName())
+						.setState(freezeValuesfromAddressDTO.getState())
+						.setZipcode(freezeValuesfromAddressDTO.getZipcode())
+						.setLatitude(response.get("latitude"))
+						.setLongitude(response.get("longitude"))
+						.build());
+		}
+		
+		Address addressModel = new Address(dto);
+		
+		try {
+			System.out.println(addressModel);
+			addressModel = addressRepository.save(addressModel);
+			System.out.println(addressModel);
+		}catch(Exception e) {
+			throw new SystemRuntimeException(ErrorCodes.DBE0001);
+		}
+		
+	}
+
+}

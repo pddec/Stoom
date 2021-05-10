@@ -1,0 +1,11 @@
+package br.com.stoom.CRUD.services.interfaces;
+
+public interface Services<T,D> {
+	
+	D executeCreate(T dto);
+	
+	D executeRead(T dto);
+	
+	D executeUpdate(T dto);
+
+}

@@ -1,0 +1,17 @@
+package br.com.stoom.CRUD.services;
+
+import java.util.Map;
+import java.util.function.Function;
+
+import br.com.stoom.CRUD.dto.AddressDTO;
+import br.com.stoom.CRUD.services.interfaces.CallServices;
+
+public class GoogleMapsCallService implements CallServices<AddressDTO> {
+
+	@Override
+	public AddressDTO execute(Function<Map<String, String>,AddressDTO> function) {
+		
+		return function.apply(t);
+	}
+
+}

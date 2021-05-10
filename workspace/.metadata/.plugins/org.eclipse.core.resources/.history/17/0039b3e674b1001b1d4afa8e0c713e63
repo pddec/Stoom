@@ -1,0 +1,36 @@
+package br.com.stoom.CRUD;
+
+import org.junit.Before;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import br.com.stoom.CRUD.dto.AddressDTO;
+import br.com.stoom.CRUD.dto.AddressDTO.BuilderAddressDTO;
+
+@SpringBootTest
+class CrudApplicationTests {
+	
+	private AddressDTO build;
+
+	@Before
+	void contextLoads() {
+			build = BuilderAddressDTO.create()
+				.setCity("Campinas")
+				.setState("São Paulo")
+				.setComplement("12")
+				.setCountry("Brasil")
+				.setNeighbourhood("Fazenda Santa Candida")
+				.setNumber("1395")
+				.setStreetName("Rua Mirta Coluccini Porto")
+				.setZipcode("13087606")
+				.setLatitude("")
+				.setLongitude("")
+				.build();
+	}
+	
+	@Test
+	void executeCreate() {
+		
+	}
+
+}

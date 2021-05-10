@@ -1,0 +1,11 @@
+
+public enum ErrorCodes {
+	
+	//Error with External Services
+	EXS0001, // Google Map API
+	
+	//DATA BASE ERRORS
+	DBE0001; 
+	
+	
+}

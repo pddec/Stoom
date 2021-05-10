@@ -1,0 +1,9 @@
+package br.com.stoom.CRUD.services;
+
+import org.springframework.data.repository.CrudRepository;
+
+import br.com.stoom.CRUD.models.Address;
+
+public interface AddressRepository extends CrudRepository<Address, Long> {
+
+}

@@ -1,0 +1,5 @@
+package br.com.stoom.CRUD.exceptions;
+
+public class SystemRuntimeException extends RuntimeException {
+
+}

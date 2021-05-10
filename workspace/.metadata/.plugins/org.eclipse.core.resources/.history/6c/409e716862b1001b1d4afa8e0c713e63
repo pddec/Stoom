@@ -1,0 +1,7 @@
+package br.com.stoom.CRUD.services.interfaces;
+
+public interface Services<T> {
+	
+	void executePost(T dto);
+
+}
