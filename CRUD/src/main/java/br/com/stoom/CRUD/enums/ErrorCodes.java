@@ -14,7 +14,6 @@ public enum ErrorCodes {
 	DBE0005,// Error to read as pages
 	
 	//INTERNAL SYSTEM ERROR
-	
 	ISE0001; // NOT MAPPED KEY  
 	
 	
