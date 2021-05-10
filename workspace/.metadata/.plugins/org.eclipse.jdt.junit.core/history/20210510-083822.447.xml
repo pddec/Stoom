@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="CrudApplicationTests" project="CRUD" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="br.com.stoom.CRUD.CrudApplicationTests" incomplete="true" displayname="CrudApplicationTests" uniqueid="[engine:junit-jupiter]/[class:br.com.stoom.CRUD.CrudApplicationTests]">
-    <testcase name="testCreate" classname="br.com.stoom.CRUD.CrudApplicationTests" time="1.689" displayname="testCreate()" uniqueid="[engine:junit-jupiter]/[class:br.com.stoom.CRUD.CrudApplicationTests]/[method:testCreate()]"/>
-    <testcase name="testUpdate" classname="br.com.stoom.CRUD.CrudApplicationTests" incomplete="true" displayname="testUpdate()" uniqueid="[engine:junit-jupiter]/[class:br.com.stoom.CRUD.CrudApplicationTests]/[method:testUpdate()]"/>
-  </testsuite>
-</testrun>
