@@ -61,8 +61,8 @@ public class AddressController {
 		}
 	}
 	
-	@RequestMapping(value = "/delete&id", method = RequestMethod.DELETE)
-	public String createAddress(@RequestParam String id ) {
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	public String createAddress(@RequestParam(required = false) String id ) {
 		
 		final AddressDTO addressDTO = BuilderAddressDTO.create()
 				.setId(String.valueOf(id))
